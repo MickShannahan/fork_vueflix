@@ -14,10 +14,16 @@ export class Movie {
 
   baseURL = 'https://image.tmdb.org/t/p/'
 
-  get backdropImgUrl() {
-    return this.baseURL + this.backdropPath
+  get largeBackdropImgUrl() {
+    return this.baseURL + 'original' + this.backdropPath
   }
-  get posterImgUrl() {
-    return this.baseURL + this.posterPath
+  get largePosterImgUrl() {
+    return this.baseURL + 'original' + this.posterPath
+  }
+  get smallBackdropImgUrl() {
+    return this.baseURL + 'w500' + this.backdropPath
+  }
+  get smallPosterImgUrl() {
+    return this.baseURL + 'w500' + this.posterPath
   }
 }

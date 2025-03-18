@@ -39,8 +39,9 @@ async function discoverMovies() {
     </section>
     <section class="container">
       <div class="row">
-        <div class="col-12">
-          {{ movies }}
+        <div v-for="movie in movies" :key="movie.id" class="col-md-3">
+          <img :src="movie.smallPosterImgUrl" :alt="'Poster for ' + movie.title" class="img-fluid">
+          {{ movie.title }}
         </div>
       </div>
     </section>
