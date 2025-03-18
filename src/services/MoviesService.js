@@ -9,6 +9,8 @@ class MoviesService {
     logger.log('GOT MOVIES 🎥🍿🎞️', response.data)
     const movies = response.data.results.map(pojo => new Movie(pojo))
     AppState.movies = movies
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.total_pages
     // NOTE use your Vue tools to inspect the data in your appstate and make sure it looks correct
   }
 }
