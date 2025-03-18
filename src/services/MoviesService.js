@@ -4,6 +4,7 @@ import { Movie } from "@/models/Movie.js"
 import { AppState } from "@/AppState.js"
 
 class MoviesService {
+
   async discoverMovies() {
     const response = await movieApi.get('discover/movie')
     logger.log('GOT MOVIES 🎥🍿🎞️', response.data)
@@ -12,6 +13,15 @@ class MoviesService {
     AppState.currentPage = response.data.page
     AppState.totalPages = response.data.total_pages
     // NOTE use your Vue tools to inspect the data in your appstate and make sure it looks correct
+  }
+
+  async changeDiscoverPage(pageNumber) {
+    const response = await movieApi.get(`discover/movie?page=${pageNumber}`)
+    logger.log('CHANGED PAGE 📖', response.data)
+    const movies = response.data.results.map(pojo => new Movie(pojo))
+    AppState.movies = movies
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.total_pages
   }
 }
 

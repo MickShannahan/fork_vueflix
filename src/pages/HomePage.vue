@@ -29,9 +29,14 @@ async function discoverMovies() {
   }
 }
 
-function changePage(pageNumber) {
-  console.log('Changing to page ' + pageNumber);
-
+async function changePage(pageNumber) {
+  try {
+    logger.log('Changing to page ' + pageNumber);
+    await moviesService.changeDiscoverPage(pageNumber)
+  } catch (error) {
+    Pop.error(error, 'COULD NOT CHANGE PAGE')
+    logger.error('COULD NOT CHANGE PAGE', error)
+  }
 }
 
 </script>
