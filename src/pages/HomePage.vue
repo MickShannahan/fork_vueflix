@@ -39,24 +39,9 @@ async function discoverMovies() {
       </div>
     </section>
     <section class="container">
-      <div class="row align-items-stretch">
+      <div class="row">
         <div v-for="movie in movies" :key="movie.id" class="col-md-3">
-          <MovieCard />
-          <!-- <div class="shadow-lg mb-2 rounded">
-            <img :src="movie.smallPosterImgUrl" :alt="'Poster for ' + movie.title" class="img-fluid rounded-top">
-            <div class="p-2">
-              <b>{{ movie.title }}</b>
-              <div class="d-flex justify-content-between mt-2">
-                <p
-                  :class="{ 'text-success': movie.voteAverage >= 7, 'text-danger': movie.voteAverage < 5 && movie.voteCount > 0 }">
-                  Rating: {{ movie.voteAverage.toFixed(1) }}
-                </p>
-                <p>
-                  Votes: {{ movie.voteCount }}
-                </p>
-              </div>
-            </div>
-          </div> -->
+          <MovieCard :movieProp="movie" />
         </div>
       </div>
     </section>
