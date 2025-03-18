@@ -1,14 +1,14 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import MovieCard from '@/components/MovieCard.vue';
+import PageNavigation from '@/components/PageNavigation.vue';
+import SearchForm from '@/components/SearchForm.vue';
 import { moviesService } from '@/services/MoviesService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted, onUnmounted } from 'vue';
 
 const movies = computed(() => AppState.movies)
-const totalPages = computed(() => AppState.totalPages)
-const currentPage = computed(() => AppState.currentPage)
 
 onMounted(() => {
   logger.log('Home Page is mounted!');
@@ -29,16 +29,6 @@ async function discoverMovies() {
   }
 }
 
-async function changePage(pageNumber) {
-  try {
-    logger.log('Changing to page ' + pageNumber);
-    await moviesService.changeDiscoverPage(pageNumber)
-  } catch (error) {
-    Pop.error(error, 'COULD NOT CHANGE PAGE')
-    logger.error('COULD NOT CHANGE PAGE', error)
-  }
-}
-
 </script>
 
 <template>
@@ -49,17 +39,10 @@ async function changePage(pageNumber) {
           <h1>Movies</h1>
         </div>
         <div class="col-12">
-          <div class="d-flex gap-3 align-items-center mt-2">
-            <button @click="changePage(currentPage - 1)" class="btn btn-indigo fs-5" type="button"
-              :disabled="currentPage <= 1">
-              Previous
-            </button>
-            <p class="fs-4 mb-0">Page {{ currentPage }} of {{ totalPages }}</p>
-            <button @click="changePage(currentPage + 1)" class="btn btn-indigo fs-5" type="button"
-              :disabled="currentPage == totalPages || currentPage == 500">
-              Next
-            </button>
-          </div>
+          <SearchForm />
+        </div>
+        <div class="col-12">
+          <PageNavigation />
         </div>
       </div>
     </section>
@@ -67,6 +50,11 @@ async function changePage(pageNumber) {
       <div class="row">
         <div v-for="movie in movies" :key="movie.id" class="col-md-3">
           <MovieCard :movieProp="movie" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <PageNavigation />
         </div>
       </div>
     </section>

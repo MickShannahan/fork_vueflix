@@ -4,7 +4,6 @@ import { Movie } from "@/models/Movie.js"
 import { AppState } from "@/AppState.js"
 
 class MoviesService {
-
   async discoverMovies() {
     const response = await movieApi.get('discover/movie')
     logger.log('GOT MOVIES 🎥🍿🎞️', response.data)
@@ -13,6 +12,11 @@ class MoviesService {
   async changeDiscoverPage(pageNumber) {
     const response = await movieApi.get(`discover/movie?page=${pageNumber}`)
     logger.log('CHANGED PAGE 📖', response.data)
+    this.handleResponse(response)
+  }
+  async searchMovies(searchQuery) {
+    const response = await movieApi.get(`search/movie?query=${searchQuery}`)
+    logger.log('SEARCHING MOVIES 🔍', response.data)
     this.handleResponse(response)
   }
   handleResponse(response) {
