@@ -50,11 +50,13 @@ async function changePage(pageNumber) {
         </div>
         <div class="col-12">
           <div class="d-flex gap-3 align-items-center mt-2">
-            <button @click="changePage(currentPage - 1)" class="btn btn-indigo fs-5" type="button">
+            <button @click="changePage(currentPage - 1)" class="btn btn-indigo fs-5" type="button"
+              :disabled="currentPage <= 1">
               Previous
             </button>
             <p class="fs-4 mb-0">Page {{ currentPage }} of {{ totalPages }}</p>
-            <button @click="changePage(currentPage + 1)" class="btn btn-indigo fs-5" type="button">
+            <button @click="changePage(currentPage + 1)" class="btn btn-indigo fs-5" type="button"
+              :disabled="currentPage == totalPages || currentPage == 500">
               Next
             </button>
           </div>
