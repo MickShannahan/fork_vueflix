@@ -1,8 +1,11 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { moviesService } from '@/services/MoviesService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { onMounted, onUnmounted } from 'vue';
+import { computed, onMounted, onUnmounted } from 'vue';
+
+const movies = computed(() => AppState.movies)
 
 onMounted(() => {
   logger.log('Home Page is mounted!');
@@ -31,6 +34,13 @@ async function discoverMovies() {
       <div class="row">
         <div class="col-12">
           <h1>Movies</h1>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="col-12">
+          {{ movies }}
         </div>
       </div>
     </section>
