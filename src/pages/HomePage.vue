@@ -7,6 +7,8 @@ import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted, onUnmounted } from 'vue';
 
 const movies = computed(() => AppState.movies)
+const totalPages = computed(() => AppState.totalPages)
+const currentPage = computed(() => AppState.currentPage)
 
 onMounted(() => {
   logger.log('Home Page is mounted!');
@@ -35,6 +37,9 @@ async function discoverMovies() {
       <div class="row">
         <div class="col-12">
           <h1>Movies</h1>
+        </div>
+        <div class="col-12">
+          <p class="fs-4">Page {{ currentPage }} of {{ totalPages }}</p>
         </div>
       </div>
     </section>
