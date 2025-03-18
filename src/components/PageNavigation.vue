@@ -13,7 +13,7 @@ async function changePage(pageNumber) {
   try {
     logger.log('Changing to page ' + pageNumber);
     const searchQuery = AppState.currentSearchQuery
-    if (!searchQuery) { // if (searchQuery == '') {
+    if (!searchQuery) { // if (searchQuery == '')
       await moviesService.changeDiscoverPage(pageNumber)
     }
     else {
