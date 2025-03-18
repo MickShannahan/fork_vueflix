@@ -8,8 +8,8 @@ export class Movie {
     this.popularity = data.popularity
     this.releaseDate = new Date(data.release_date)
     this.title = data.title
-    this.voteAverage = data.vote_average
-    this.voteCount = data.vote_count
+    this.voteAverage = data.vote_average ?? 0
+    this.voteCount = data.vote_count ?? 0
   }
 
   baseURL = 'https://image.tmdb.org/t/p/'

@@ -4,6 +4,7 @@ import { Movie } from "@/models/Movie.js"
 import { AppState } from "@/AppState.js"
 
 class MoviesService {
+
   async discoverMovies() {
     const response = await movieApi.get('discover/movie')
     logger.log('GOT MOVIES 🎥🍿🎞️', response.data)
@@ -18,7 +19,22 @@ class MoviesService {
     const response = await movieApi.get(`search/movie?query=${searchQuery}`)
     logger.log('SEARCHING MOVIES 🔍', response.data)
     this.handleResponse(response)
+    AppState.currentSearchQuery = searchQuery
   }
+
+
+  async changeSearchPage(searchQuery, pageNumber) {
+    logger.log(`going to page ${pageNumber} for ${searchQuery} movies`)
+    const response = await movieApi.get(`search/movie?query=${searchQuery}&page=${pageNumber}`)
+    logger.log('CHANGING SEARCH PAGE 🔍', response.data)
+    this.handleResponse(response)
+  }
+
+  async clearSearchQuery() {
+    AppState.currentSearchQuery = ''
+    await this.discoverMovies()
+  }
+
   handleResponse(response) {
     const movies = response.data.results.map(pojo => new Movie(pojo))
     AppState.movies = movies

@@ -9,6 +9,7 @@ import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted, onUnmounted } from 'vue';
 
 const movies = computed(() => AppState.movies)
+const searchQuery = computed(() => AppState.currentSearchQuery)
 
 onMounted(() => {
   logger.log('Home Page is mounted!');
@@ -29,6 +30,17 @@ async function discoverMovies() {
   }
 }
 
+async function clearSearchQuery() {
+  try {
+    await moviesService.clearSearchQuery()
+  } catch (error) {
+    Pop.error(error, 'COULD NOT CLEAR')
+    // NOTE console statements in Vue will break the Vue application when the code is built and deployed, use logger instead
+    logger.error('COULD NOT CLEAR', error)
+  }
+}
+
+
 </script>
 
 <template>
@@ -36,7 +48,13 @@ async function discoverMovies() {
     <section class="container my-2">
       <div class="row">
         <div class="col-12">
-          <h1>Movies</h1>
+          <h1 class="text-capitalize">
+            <span v-if="searchQuery">
+              <span @click="clearSearchQuery()" class="mdi mdi-close" title="Clear Search" role="button"></span>
+              {{ searchQuery.toLowerCase() }}
+            </span>
+            Movies
+          </h1>
         </div>
         <div class="col-12">
           <SearchForm />

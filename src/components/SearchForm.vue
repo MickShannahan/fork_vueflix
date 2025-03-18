@@ -11,6 +11,7 @@ async function searchMovies() {
   try {
     logger.log('searching for', editableSearch.value)
     await moviesService.searchMovies(editableSearch.value)
+    editableSearch.value = ''
   } catch (error) {
     Pop.error(error, 'COULD NOT SEARCH')
     logger.error('COULD NOT SEARCH', error)

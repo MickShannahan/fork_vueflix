@@ -12,7 +12,13 @@ const totalPages = computed(() => AppState.totalPages)
 async function changePage(pageNumber) {
   try {
     logger.log('Changing to page ' + pageNumber);
-    await moviesService.changeDiscoverPage(pageNumber)
+    const searchQuery = AppState.currentSearchQuery
+    if (!searchQuery) { // if (searchQuery == '') {
+      await moviesService.changeDiscoverPage(pageNumber)
+    }
+    else {
+      await moviesService.changeSearchPage(searchQuery, pageNumber)
+    }
   } catch (error) {
     Pop.error(error, 'COULD NOT CHANGE PAGE')
     logger.error('COULD NOT CHANGE PAGE', error)
