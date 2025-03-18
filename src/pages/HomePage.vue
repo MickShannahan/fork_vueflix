@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import MovieCard from '@/components/MovieCard.vue';
 import { moviesService } from '@/services/MoviesService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
@@ -40,7 +41,8 @@ async function discoverMovies() {
     <section class="container">
       <div class="row align-items-stretch">
         <div v-for="movie in movies" :key="movie.id" class="col-md-3">
-          <div class="shadow-lg mb-2 rounded">
+          <MovieCard />
+          <!-- <div class="shadow-lg mb-2 rounded">
             <img :src="movie.smallPosterImgUrl" :alt="'Poster for ' + movie.title" class="img-fluid rounded-top">
             <div class="p-2">
               <b>{{ movie.title }}</b>
@@ -54,7 +56,7 @@ async function discoverMovies() {
                 </p>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
