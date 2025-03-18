@@ -29,6 +29,11 @@ async function discoverMovies() {
   }
 }
 
+function changePage(pageNumber) {
+  console.log('Changing to page ' + pageNumber);
+
+}
+
 </script>
 
 <template>
@@ -39,7 +44,15 @@ async function discoverMovies() {
           <h1>Movies</h1>
         </div>
         <div class="col-12">
-          <p class="fs-4">Page {{ currentPage }} of {{ totalPages }}</p>
+          <div class="d-flex gap-3 align-items-center mt-2">
+            <button @click="changePage(currentPage - 1)" class="btn btn-indigo fs-5" type="button">
+              Previous
+            </button>
+            <p class="fs-4 mb-0">Page {{ currentPage }} of {{ totalPages }}</p>
+            <button @click="changePage(currentPage + 1)" class="btn btn-indigo fs-5" type="button">
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </section>
