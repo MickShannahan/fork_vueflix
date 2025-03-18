@@ -7,14 +7,14 @@ function loadPage(page) {
 
 const routes = [
   {
-    path: '/',
+    path: '/', // when the url is http://localhost:8080/#/
     name: 'Home',
-    component: loadPage('HomePage')
+    component: loadPage('HomePage') // vue loads this component into the RouterView
   },
   {
-    path: '/about',
+    path: '/about', // when the url is http://localhost:8080/#/about
     name: 'About',
-    component: loadPage('AboutPage')
+    component: loadPage('AboutPage') // vue loads this component into the RouterView
   },
   {
     path: '/account',

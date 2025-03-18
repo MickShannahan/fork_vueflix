@@ -9,14 +9,12 @@ import { RouterView } from 'vue-router';
     <Navbar />
   </header>
   <main>
-    <RouterView/>
+    <!-- NOTE "pages" will be injected into this RouterView component -->
+    <RouterView />
   </main>
-  <footer class=" text-center">
-    Made with <i class="mdi mdi-heart text-pink"></i> by CodeWorks
+  <footer>
+    <div class="text-center">Made with <span class="mdi mdi-heart"></span> by Jeremy</div>
   </footer>
 </template>
 
-<style lang="scss">
-
-
-</style>
+<style lang="scss"></style>
