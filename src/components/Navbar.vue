@@ -12,6 +12,7 @@ function toggleTheme() {
 watch(theme, () => {
   document.documentElement.setAttribute('data-bs-theme', theme.value)
   saveState('theme', theme.value)
+  console.log('🪵 heres a log')
 }, { immediate: true })
 
 </script>

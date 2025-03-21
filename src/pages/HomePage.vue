@@ -22,6 +22,7 @@ onMounted(() => {
 // NOTE onUnmounted will call it's callback function when the component is no longer mounted into the view
 onUnmounted(() => {
   logger.log('Home Page is no longer mounted!')
+  console.log('🪵 heres a log')
 })
 
 // NOTE our pages are generally responsible for making requests to get data that will be displayed on that page

@@ -7,5 +7,15 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
-        - name: The thing that i want to do
-          run: echo "Wowzers that was alot for just a console log"
+        - name: Monkey business
+          run: echo "🦧🦍🐒"
+
+  log-checker: 
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout Code 👀
+          uses: actions/checkout@v3
+
+        - name: Looking for logs 🦫
+          run: grep -ro 'console.log'

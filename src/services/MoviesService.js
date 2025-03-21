@@ -14,6 +14,7 @@ class MoviesService {
     const response = await movieApi.get(`discover/movie?page=${pageNumber}`)
     logger.log('CHANGED PAGE 📖', response.data)
     this.handleResponse(response)
+    console.log('🪵 heres a log')
   }
 
   async searchMovies(searchQuery) {
