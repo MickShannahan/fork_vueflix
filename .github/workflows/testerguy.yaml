@@ -22,3 +22,22 @@ jobs:
               echo "🦫🦫🦫 sending the log inspectors"
               count=$(grep -ro 'console\.log' . | wc -l)
               echo "🪵 Found $count occurrences of 'console.log'"
+
+  build-deploy:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Chekcout Code 👀
+          uses: actions/checkout@v3
+
+        - name: Setup Nodejs 🥗
+          uses: actions/setup-node@v3
+          with: 
+            node-version: 22
+
+        - name: Install Dependencies 📩
+          run: npm ci #clean install (preferred for automated workflows)
+
+        - name: BUILD 👷⚒️
+          run: npm run build
+
