@@ -1,0 +1,11 @@
+name: Micks cool Action
+
+on: [push]
+
+jobs: 
+  greeting:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: The thing that i want to do
+          run: echo "Wowzers that was alot for just a console log"
