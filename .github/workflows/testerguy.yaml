@@ -27,7 +27,7 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
-        - name: Chekcout Code 👀
+        - name: Checkout Code 👀
           uses: actions/checkout@v3
 
         - name: Setup Nodejs 🥗
@@ -36,7 +36,7 @@ jobs:
             node-version: 22
 
         - name: Install Dependencies 📩
-          run: npm ci #clean install (preferred for automated workflows)
+          run: npm i 
 
         - name: BUILD 👷⚒️
           run: npm run build
