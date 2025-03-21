@@ -2,6 +2,8 @@ CodeWorks Vue Starter
 =====================
 This template is designed to help get students started building vue applications
 
+change to pull
+
 ## Legal Overview
 
 The content under the CodeWorks®, LLC Organization and all of the individual repos are solely intended for use by CodeWorks Instruction to deliver Educational content to CodeWorks Students.
