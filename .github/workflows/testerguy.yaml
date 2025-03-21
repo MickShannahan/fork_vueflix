@@ -2,6 +2,11 @@ name: Micks cool Action
 
 on: [push]
 
+permissions:
+  contents: read  
+  pages: write  
+  id-token: write 
+
 jobs: 
   greeting:
       runs-on: ubuntu-latest
@@ -24,20 +29,35 @@ jobs:
               echo "🪵 Found $count occurrences of 'console.log'"
 
   build-deploy:
-      runs-on: ubuntu-latest
+    # environment:
+      # name: github-pages  
+      # url: ${{ steps.deployment.outputs.page_url }} 
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout Code 👀
-          uses: actions/checkout@v3
+    steps:
+      - name: Checkout Code 👀
+        uses: actions/checkout@v3
 
-        - name: Setup Nodejs 🥗
-          uses: actions/setup-node@v3
-          with: 
-            node-version: 22
+      - name: Setup Nodejs 🥗
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 22
 
-        - name: Install Dependencies 📩
-          run: npm i 
+      - name: Install Dependencies 📩
+        run: npm i 
 
-        - name: BUILD 👷⚒️
-          run: npm run build
+      - name: BUILD 👷⚒️
+        run: npm run build
+
+      - name: Init Pages 📃
+        uses: actions/configure-pages@v4
+      
+      - name: Upload Build to Pages 📡
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+      - name: Deploy Page 🦧
+        id: deployment
+        uses: actions/deploy-pages@v4
 
